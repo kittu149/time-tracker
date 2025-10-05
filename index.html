@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[SYSTEM] Time Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="p-4 sm:p-8">
+    
+    <div id="alert-box"></div>
+
+    <div class="container rounded-lg p-6 sm:p-8 w-full max-w-4xl space-y-8">
+        <h1 class="text-3xl sm:text-4xl text-center mb-6">[STATUS] TIME TRACKER</h1>
+        
+        <div class="data-panel p-5 rounded-lg space-y-4">
+            <h2 class="text-xl text-center uppercase border-b border-gray-600 pb-2">ADD NEW ENTRY</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 items-end">
+                
+                <div class="flex flex-col md:col-span-1">
+                    <label for="activity" class="text-xs text-gray-400 mb-1">Activity:</label>
+                    <select id="activity" class="system-input p-2 w-full">
+                        <option value="Sleep">Sleep</option>
+                        <option value="Exercise">Exercise</option>
+                        <option value="Study">Study</option>
+                        <option value="Work">Work</option>
+                        <option value="Custom">Custom</option>
+                    </select>
+                </div>
+
+                <div class="flex flex-col md:col-span-1" id="custom-activity-group" style="display: none;">
+                    <label for="custom-activity" class="text-xs text-gray-400 mb-1">Custom Name:</label>
+                    <input type="text" id="custom-activity" placeholder="ENTER NAME" class="system-input p-2 w-full">
+                </div>
+                
+                <div class="flex flex-col md:col-span-1">
+                    <label for="hours" class="text-xs text-gray-400 mb-1">Hours:</label>
+                    <input type="number" id="hours" min="0" max="23" step="1" placeholder="H" class="system-input p-2 w-full text-center">
+                </div>
+                
+                <div class="flex flex-col md:col-span-1">
+                    <label for="minutes" class="text-xs text-gray-400 mb-1">Minutes:</label>
+                    <input type="number" id="minutes" min="0" max="59" step="1" placeholder="M" class="system-input p-2 w-full text-center">
+                </div>
+
+                <div class="flex-grow sm:col-span-2 md:col-span-5">
+                    <label for="description" class="text-xs text-gray-400 mb-1 block">Description/Objective:</label>
+                    <input type="text" id="description" placeholder="ENTER DETAILS" class="system-input p-2 w-full" style="display: none;">
+                </div>
+                
+                <button id="add-entry" class="p-3 w-full sm:col-span-2 md:col-span-5">
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 inline-block align-middle mr-1"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> -->
+                    + RECORD STAT
+                </button>
+            </div>
+        </div>
+        
+        <div class="data-panel chart-container p-6 rounded-lg">
+            <h2 class="text-xl text-center uppercase border-b border-gray-600 pb-2 mb-4">DAILY PROGRESS CHART (HISTORY)</h2>
+            <div class="relative h-64 md:h-96">
+                <canvas id="timeChart"></canvas>
+            </div>
+        </div>
+
+        <div class="edit-section data-panel p-6 rounded-lg">
+            <h2 class="text-xl text-center uppercase border-b border-gray-600 pb-2 mb-4">TODAY'S ENTRIES (DRAG TO REORDER)</h2>
+            <ul id="daily-entries-list" class="space-y-4 p-0 list-none">
+                </ul>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

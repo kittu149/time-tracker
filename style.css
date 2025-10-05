@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Electrolize&display=swap');
+        
+/* Solo Leveling Theme Variables (Based on Image) */
+:root {
+    --primary-color: #a020f0; /* Deep Magenta/Violet */
+    --secondary-color: #0c0a0d; /* Ultra Dark Black */
+    --text-light: #e2e8f0;
+    --text-data: #00ffff; /* Cyan/Aqua for Stats */
+    --font-title: 'Rajdhani', sans-serif;
+    --font-system: 'Electrolize', sans-serif;
+    --glow-light: 0 0 10px rgba(160, 32, 240, 0.7), 0 0 20px rgba(160, 32, 240, 0.3);
+    --glow-intense: 0 0 15px rgba(160, 32, 240, 0.9), 0 0 30px rgba(160, 32, 240, 0.5);
+    --border-glow: 1px solid rgba(160, 32, 240, 0.5);
+    /* New Button Colors */
+    --edit-color: #00ffff; /* Bright Cyan */
+    --delete-color: #ff3333; /* Bright Red */
+}
+
+body {
+    font-family: var(--font-system);
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    /* Grid Pattern Overlay for HUD Effect */
+    background-image: linear-gradient(0deg, transparent 24%, rgba(160, 32, 240, 0.05) 25%, rgba(160, 32, 240, 0.05) 26%, transparent 27%, transparent 74%, rgba(160, 32, 240, 0.05) 75%, rgba(160, 32, 240, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(160, 32, 240, 0.05) 25%, rgba(160, 32, 240, 0.05) 26%, transparent 27%, transparent 74%, rgba(160, 32, 240, 0.05) 75%, rgba(160, 32, 240, 0.05) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+}
+
+.container {
+    background-color: rgba(18, 18, 25, 0.98);
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--glow-light);
+    transition: all 0.3s ease;
+}
+
+h1, h2 {
+    font-family: var(--font-title);
+    color: var(--primary-color);
+    text-shadow: var(--glow-light);
+    letter-spacing: 3px;
+    font-weight: 700;
+}
+
+/* Input/Button Styling */
+.system-input, select, button {
+    border: 1px solid var(--primary-color);
+    background-color: #2d3748;
+    color: var(--text-light);
+    font-family: var(--font-system);
+    text-transform: uppercase;
+    border-radius: 8px;
+}
+
+.system-input:focus, select:focus {
+    border-color: var(--text-data);
+    box-shadow: 0 0 5px var(--text-data);
+    outline: none;
+}
+
+/* Action Button Styling */
+#add-entry {
+    background-color: var(--primary-color);
+    color: black;
+    font-family: var(--font-title);
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 0 5px rgba(160, 32, 240, 0.8);
+    transition: all 0.3s ease;
+    border-radius: 9999px; /* Pill shape */
+}
+
+#add-entry:hover {
+    background-color: var(--text-data);
+    color: #111;
+    transform: scale(1.03);
+    box-shadow: 0 0 15px var(--text-data);
+}
+
+/* Data Panels */
+.data-panel {
+    background-color: rgba(45, 55, 72, 0.5);
+    border: 1px solid rgba(160, 32, 240, 0.5);
+}
+
+/* Daily Entry Items - Draggable Styling */
+.entry-item {
+    list-style: none;
+    cursor: grab;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+}
+
+.entry-item:hover {
+    background-color: #2d3748;
+}
+
+.entry-item.dragging {
+    opacity: 0.5;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transform: scale(1.01);
+    border: 1px dashed var(--text-data);
+}
+
+.day-entry h3 {
+    color: #63b3ed;
+    font-family: var(--font-system);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.entry-time {
+    color: var(--text-data); 
+    text-shadow: 0 0 2px rgba(0, 255, 255, 0.8);
+}
+
+/* Edit and Delete Buttons */
+.edit-btn, .delete-btn {
+    font-family: var(--font-system);
+    font-weight: 600;
+    border-radius: 9999px; 
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    text-shadow: 0 0 1px black;
+    border: none;
+}
+
+/* New Button Colors */
+.edit-btn {
+    background-color: var(--edit-color);
+    color: var(--secondary-color);
+}
+.edit-btn:hover {
+    box-shadow: 0 0 8px var(--edit-color);
+    color: black;
+}
+
+.delete-btn {
+    background-color: var(--delete-color);
+    color: var(--text-light);
+}
+.delete-btn:hover {
+    box-shadow: 0 0 8px var(--delete-color);
+    color: white;
+}
+
+/* Custom Alert Message Box */
+#alert-box {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #e53e3e;
+    color: white;
+    box-shadow: 0 0 10px #e53e3e;
+    font-family: var(--font-system);
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    z-index: 1000;
+    display: none;
+}
+
+/* STAT BAR STYLING */
+.stat-bar-container {
+    height: 8px;
+    background-color: #1a202c;
+    border: 1px solid #4a5568;
+    overflow: hidden;
+    margin-top: 4px;
+    border-radius: 2px;
+}
+.stat-bar {
+    height: 100%;
+    transition: width 0.5s ease-out;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 4px var(--primary-color);
+}
